@@ -43,6 +43,7 @@ This will have to be altered to match the location of your SDK and FAT FS SD car
 First fix errors in CMakeLists.txt (should only be directories, the location of the pico SDK and FAT FS library)
 
 You can set the environment variable PICO_SDK_PATH using export, but it is also set in CMakeLists.txt
+
 export PICO_SDK_PATH="[where the Pico SDK is]"
 
 create a 'build' directory in the 'firmware' directory:
