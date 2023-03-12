@@ -38,7 +38,7 @@ official raspberry pi picosdk at https://github.com/raspberrypi/pico-sdk
 blackjetrock's SD card library at https://github.com/blackjetrock/ajm-no-OS-FatFS-SD-SPI-RPi-Pico
 
 The firmware directory has the files required for building the code but CMakeLists.txt is configured for a particular file system structure. 
-This will have to be altered to match the location of your SDK and FAT FS SD card libraries are located.
+This will have to be altered to match the location where your SDK and FAT FS SD card libraries are located.
 
 First fix errors in CMakeLists.txt (should only be directories, the location of the pico SDK and FAT FS library)
 
