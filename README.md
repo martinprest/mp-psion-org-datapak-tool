@@ -6,7 +6,15 @@ Datapack tool for Psion Organisers
 Status
 ======
 
-** This is a work in progress and probably always will be **
+** This is a work in progress **
+
+This is a fork of blackjetrock's datapak tool at: https://github.com/blackjetrock/psion-org-datapack-tool
+
+It's an attempt to tidy and develop the code.
+
+Currently builds oled_test.c which allows a test of the oled and menu operation. SD card functionality will come next.
+
+Blackjetrock's previous code status:
 
 The code builds and can read datapack data. It can also write datapack data. issues:
 the OLED and buttons work and there are read and write and info options that work on the OLED.
@@ -23,21 +31,30 @@ A lot of funtionality is over USB serial.
 Building
 ========
 
-The firmware directory has the files required for building the code but
-they are configured for my file system structure.
-They will have to be altered to match the location of your SDK, where the FAT
-FS library used will have to be located.
+Libraries required:
 
-Set the PICO_SDK_DIR environment variable to point to the Pico SDK directory: 
+official raspberry pi picosdk at https://github.com/raspberrypi/pico-sdk
 
-export PICO_SDK_DIR="[where the Pico SDK is]"
+blackjetrock's SD card library at https://github.com/blackjetrock/ajm-no-OS-FatFS-SD-SPI-RPi-Pico
 
-create a 'build' directory in the 'firmware' directory and run:
+The firmware directory has the files required for building the code but CMakeLists.txt is configured for a particular file system structure. 
+This will have to be altered to match the location of your SDK and FAT FS SD card libraries are located.
+
+First fix errors in CMakeLists.txt (should only be directories, the location of the pico SDK and FAT FS library)
+
+You can set the environment variable PICO_SDK_PATH using export, but it is also set in CMakeLists.txt
+export PICO_SDK_PATH="[where the Pico SDK is]"
+
+create a 'build' directory in the 'firmware' directory:
+
+mkdir build
+
+cd build
 cmake ..
 
-then fix errors (should only be directories, probably the location of the FAT FS library in CMakeLists.txt)
 
-Then :
+
+Then, still in build directory:
 
 make
 
