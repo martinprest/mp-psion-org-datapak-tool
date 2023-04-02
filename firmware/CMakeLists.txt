@@ -7,41 +7,46 @@ set(CMAKE_CXX_STANDARD 17)
 
 # initalize pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
-set(PICO_SDK_PATH "/tree/downloaded_tools/pico/pico-sdk")
+#set(PICO_SDK_PATH "/tree/downloaded_tools/pico/pico-sdk")
+set(PICO_SDK_PATH "/home/martin/pico/pico-sdk")
 
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 include(pico_extras_import.cmake)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
-project(datapack_tool C CXX ASM)
+project(datapak_tool C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # SD FAT LIB
-add_subdirectory(/tree/downloaded_tools/pico/ajm-no-OS-FatFS-SD-SPI-RPi-Pico/FatFs_SPI build)
+#add_subdirectory(/tree/downloaded_tools/pico/ajm-no-OS-FatFS-SD-SPI-RPi-Pico/FatFs_SPI build)
+add_subdirectory(/home/martin/pico/pico-extras/ajm-no-OS-FatFS-SD-SPI-RPi-Pico-main/FatFs_SPI build)
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(datapack_tool datapack_tool.c )
+#add_executable(datapak_tool datapack_tool.c )
+#add_executable(datapak_tool menus.c )
+#add_executable(datapak_tool oled_test.c )
+add_executable(datapak_tool blink.c )
 
-pico_set_program_name(datapack_tool "datapack_tool")
-pico_set_program_version(datapack_tool "0.1")
+pico_set_program_name(datapak_tool "datapak_tool")
+pico_set_program_version(datapak_tool "0.1")
 
-#pico_enable_stdio_uart(datapack_tool 0)
-pico_enable_stdio_usb(datapack_tool 1)
+#pico_enable_stdio_uart(datapak_tool 0)
+pico_enable_stdio_usb(datapak_tool 1)
 
 # Add the standard library to the build
-target_link_libraries(datapack_tool pico_stdlib)
+target_link_libraries(datapak_tool pico_stdlib)
 
 IF (NOT DEFINED N_SD_CARDS)
     SET(N_SD_CARDS 1)
 ENDIF()
-target_compile_definitions(datapack_tool PUBLIC DEBUG N_SD_CARDS=${N_SD_CARDS})
+target_compile_definitions(datapak_tool PUBLIC DEBUG N_SD_CARDS=${N_SD_CARDS})
 
 # Add any user requested libraries
-target_link_libraries(datapack_tool
+target_link_libraries(datapak_tool
         #hardware_i2c
         hardware_pio
         hardware_clocks
@@ -51,5 +56,5 @@ target_link_libraries(datapack_tool
 	FatFs_SPI
         )
 
-pico_add_extra_outputs(datapack_tool)
+pico_add_extra_outputs(datapak_tool)
 
