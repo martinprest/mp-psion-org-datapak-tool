@@ -89,7 +89,6 @@ byte CLK_val                        = 0;        // flag to indicate CLK state
 // Direct access to GPIO registers is faster, and we need speed
 #define DIRECT_GPIO            1
 
-bool sd_ok_flag = false;
 
 // Do we use a polling loop of interrupts?
 #define USE_INTERRUPTS         0
@@ -104,10 +103,6 @@ bool sd_ok_flag = false;
 
 // Pack ID byte
 #define PACK_ID_PAGED  0x04
-
-// For the OLED display
-const uint SDA_PIN             = 15;
-const uint SCL_PIN             = 14;
 
 
 //#ifndef I2C_FUNCTIONS_H_
@@ -204,26 +199,8 @@ volatile int trace_i = 0;
 //#define PAK_MEMORY_SIZE  32768
 
 
-// Number of buttons used for the menu system. The 'exit polling' button is not in this
-// list, it is coded as a GPIO line as we don't want to waste time processing the menu
-// buttons in the fast polling loop
 
-#define NUM_BUTTONS            3
 
-// All organiser files are in this subdirectory on the SD card, just to keep things tidy
-// and allow the card to be used for other things if needed.
-#define PAK_DIR                "/PAK"
-
-// Debounce
-#define MAX_BUT_COUNT          6
-
-#if PICOPAK
-#define MENU_MAX  3
-#else
-#define MENU_MAX  6
-#endif
-
-int menu_offset = 0;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -238,14 +215,6 @@ bool read_opk_file(I2C_SLAVE_DESC *slave, char *filename);
 void button_compare_file(struct MENU_ELEMENT *e);
 void compare_opk_file(I2C_SLAVE_DESC *slave, char *filename);
 byte readByte();
-
-
-bool logger_enabled;
-const uint32_t period = 1000;
-absolute_time_t next_time;
-
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////

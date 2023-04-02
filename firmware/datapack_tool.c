@@ -1490,6 +1490,7 @@ struct MENU_ELEMENT listfiles[MAX_LISTFILES+1];
 int num_listfiles;
 char names[MAX_LISTFILES][MAX_NAME];
 char current_file[MAX_NAME+1];
+
 int brightness_percent = 100;
 
 // read the file with the given name into the buffer

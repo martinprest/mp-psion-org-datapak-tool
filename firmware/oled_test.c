@@ -1,24 +1,28 @@
 
 // test of oled and menu code
 
-#include "pico/stdlib.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "pico/stdlib.h"
+#include "hardware/pio.h"
+#include "hardware/clocks.h"
 
 //#include <stdarg.h>  // can't see any use for this yet
 //#include <ctype.h>
 
 #include "oled.c"
 #include "menus.c"
+#include "sd_card_fs.c"
 
 #define PICOPAK 0
 #define OLED_ON 1
-#define SD_CARD 0
+#define SD_CARD 0 // currently crashes if SD_CARD 1
 #define USE_INTERRUPTS 0
 
 void main()
  {
+      char line[80];
 	
 	  stdio_init_all();
 	  loop_delay(2000000);
@@ -30,7 +34,7 @@ void main()
 	  
 	  // print info to serial
 	  printf("\n\nPsion Organiser Datapack Tool\n\n");
-	  printf("\nInitialising...");
+	  printf("\nInitialising...\n");
 	  
 	  
 	  /*
@@ -52,18 +56,11 @@ void main()
       oled_clear_display(&oled0);
       oled_set_xy(&oled0, 0,0);
       oled_display_string(&oled0, "Datapak Gadget Test");
+#endif
       
 #if USE_INTERRUPTS
 	  oled_set_xy(&oled0, 0,14);
 	  oled_display_string(&oled0, "Interrupts");
-#endif
-
-#if SD_CARD 
-	  sprintf(line, "%s", current_file);
-	  oled_set_xy(&oled0, 0, 14);
-	  oled_display_string(&oled0, line);
-#endif
-
 #endif
 
 loop_delay(2000000);
@@ -71,7 +68,7 @@ loop_delay(2000000);
 #if SD_CARD      
       // Mount and unmount the SD card to set the sd_ok_flag up
       mount_sd();
-      unmount_sd();
+      //unmount_sd();
       
       oled_set_xy(&oled0, 0,21);
       if( sd_ok_flag )
@@ -86,6 +83,12 @@ loop_delay(2000000);
 	}
 
       loop_delay(1000000);
+#endif
+
+#if SD_CARD 
+	  sprintf(line, "%s", current_file); // current_file defined in menus.c
+	  oled_set_xy(&oled0, 0, 14);
+	  oled_display_string(&oled0, line);
 #endif
       
 #if 0
