@@ -55,8 +55,8 @@ create a 'build' directory in the 'firmware' directory:
 mkdir build
 
 cd build
-cmake ..
 
+cmake ..
 
 
 Then, still in build directory:
