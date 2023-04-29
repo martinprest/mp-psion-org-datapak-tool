@@ -28,8 +28,8 @@ add_subdirectory(/home/martin/pico/pico-extras/ajm-no-OS-FatFS-SD-SPI-RPi-Pico-m
 
 #add_executable(datapak_tool datapack_tool.c )
 #add_executable(datapak_tool menus.c )
-#add_executable(datapak_tool oled_test.c )
-add_executable(datapak_tool blink.c )
+add_executable(datapak_tool oled_test.c )
+#add_executable(datapak_tool blink.c )
 
 pico_set_program_name(datapak_tool "datapak_tool")
 pico_set_program_version(datapak_tool "0.1")

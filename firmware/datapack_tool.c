@@ -105,7 +105,7 @@ byte CLK_val                        = 0;        // flag to indicate CLK state
 
 bool sd_ok_flag = false;
 
-// Do we use a polling loop of interrupts?
+// Do we use a polling loop or interrupts?
 #define USE_INTERRUPTS         0
 #define USE_POLLING            1
 

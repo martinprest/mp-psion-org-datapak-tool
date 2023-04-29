@@ -10,9 +10,6 @@
 #include "rtc.h"
 #include "sd_card.h"
 
-#ifndef I2C_FUNCTIONS_H_
-#define I2C_FUNCTIONS_H_
-#endif /* I2C_FUNCTIONS_H_ */
 
 // variables from FAT_FS library include (not full list):
 // FATFS, FRESULT, FF_MAX_SS, FR_OK, FF_LFN_BUF, DIR, FIL, FILINFO, AM_DIR, FA_READ
@@ -310,7 +307,7 @@ FATFS p_fs;
 
 void mount_sd(void)
 {
-  //  p_fs = get_fs_by_name("0:");
+  //p_fs = get_fs_by_name("0:");
 
   sd_ok_flag = false;
 

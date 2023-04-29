@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <string.h>
+#include <stdarg.h>
+#include <ctype.h>
+
 #include "pico/stdlib.h"
 #include "hardware/pio.h"
 #include "hardware/clocks.h"
@@ -17,7 +21,7 @@
 
 #define PICOPAK 0
 #define OLED_ON 1
-#define SD_CARD 0 // currently crashes if SD_CARD 1
+#define SD_CARD 1 // currently crashes if SD_CARD 1
 #define USE_INTERRUPTS 0
 
 void main()
@@ -65,10 +69,13 @@ void main()
 
 loop_delay(2000000);
       
-#if SD_CARD      
+#if SD_CARD
+	  // Initialise SD card driver
+	  sd_init_driver();
+
       // Mount and unmount the SD card to set the sd_ok_flag up
       mount_sd();
-      //unmount_sd();
+      unmount_sd();
       
       oled_set_xy(&oled0, 0,21);
       if( sd_ok_flag )
